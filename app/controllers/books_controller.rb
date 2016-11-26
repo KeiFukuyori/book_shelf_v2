@@ -16,8 +16,18 @@ class BooksController < ApplicationController
   
   def create
     @book = Book.new(book_params)
-    @book.save
-    redirect_to books_path
+    
+    if @book.valid? 
+       @book.save
+       redirect_to books_path
+    else  
+       flash[:alert] =@book.errors.full_messages
+       render :new
+      # →rener :new は　「もう一度newを描画している」
+      # @book.errors.の中にエラーメッセージが入る
+      # これをflash[:alert]に入れている
+    end
+    
   end
   
   def edit
