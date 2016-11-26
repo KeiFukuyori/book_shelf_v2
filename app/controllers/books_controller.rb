@@ -25,11 +25,20 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.update(book_params)
     
+    # redirect_to book_path
+    redirect_to book_path(@book)
+  end
+  
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    
     redirect_to books_path
   end
   
   private
   
+  # Strong Parameters
   def book_params
     params.require(:book).permit(:name,:price,:publish,:publish_date)
   end

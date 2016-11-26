@@ -3,7 +3,7 @@
 <% @books.each do |book|%>
   <li>
       <%= book.name %>
-      <%= link_to "詳細" , book_path(book) %>
+      <%= link_to "詳細" , book_path(book.id) %>
   </li>
 <% end %>
 <p><%= link_to "新規追加", new_book_path %></p>
